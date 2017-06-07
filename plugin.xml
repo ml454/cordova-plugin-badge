@@ -80,7 +80,17 @@
         <source-file
             src="src/android/BadgeImpl.java"
             target-dir="src/de/appplant/cordova/plugin/badge" />
-
+            
+        <source-file
+            src="src/android/BadgeIntentService.java"
+            target-dir="src/de/appplant/cordova/plugin/badge" />
+            
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service
+                android:name="de.appplant.cordova.plugin.badge.BadgeIntentService"
+                android:exported="false">
+            </service>
+		</config-file>
     </platform>
 
     <!-- browser -->

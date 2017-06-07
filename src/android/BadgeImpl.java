@@ -28,6 +28,14 @@ import org.json.JSONObject;
 
 import me.leolin.shortcutbadger.ShortcutBadger;
 
+//Aigens modify
+import android.content.Intent;
+import android.os.Build;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.util.Log;
+//Aigens modify end
+
 /**
  * Implementation of the badge interface methods.
  */
@@ -76,6 +84,21 @@ class BadgeImpl {
 
         saveBadge(badge, ctx);
         ShortcutBadger.applyCount(ctx, badge);
+
+        //Aigens modify
+        // ctx.startService(
+        //     new Intent(ctx, BadgeIntentService.class).putExtra("badgeCount", badge)
+        // );
+        if (Build.MANUFACTURER.equalsIgnoreCase("Xiaomi")) {
+            ctx.startService(
+                new Intent(ctx, BadgeIntentService.class).putExtra("badgeCount", badge)
+            );
+        }
+        else {
+            ShortcutBadger.applyCount(ctx, badge);
+        }
+
+        //Aigens modify end
     }
 
     /**
